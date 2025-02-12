@@ -76,11 +76,11 @@ def top_level_delay(seconds):
         return wrapper
     return returner_of_delayed_func
 
-@top_level_delay(3)
+@top_level_delay(1)
 def grazink500():
     return 500
 
-@top_level_delay(5)
+@top_level_delay(1)
 def vykdyk_aritmetika(skaicius1, skaicius2, veiksmas = None):
     if veiksmas == 'atimtis':
         return skaicius1 - skaicius2
@@ -88,3 +88,59 @@ res = grazink500()
 print(res)
 res = vykdyk_aritmetika(100,1, 'atimtis')
 print(res)
+print('-'*40)
+# Example
+class Darbuotojas:
+    def __init__(self, vardas, pavarde, pareigos):
+        self.vardas = vardas
+        self.pavarde = pavarde
+        self.pareigos = pareigos
+    def __iter__(self):
+        return iter([self.vardas, self.pavarde, self.pareigos])
+
+
+darbuotojas = Darbuotojas('Edgar','Lip','Full-stack')
+for savybe in darbuotojas:
+    print(savybe)
+print('-'*40)
+# Example
+listas = ['sausis','vasaris','kovas']
+listo_iteratorius = iter(listas)
+print(listas)
+print(listo_iteratorius)
+
+res = next(listo_iteratorius)
+print(res)
+
+res = next(listo_iteratorius)
+print(res)
+
+res = next(listo_iteratorius)
+print(res)
+print('-'*40)
+# Example
+def skaiciuok_iki(max_reiksme):
+    skaicius = 0
+    while skaicius < max_reiksme:
+        yield skaicius
+        skaicius += 1
+
+for numeris in skaiciuok_iki(5):
+    print(numeris)
+print('-'*40)
+# Example
+# employees = [x * x for x in range(10000)]
+# for employee in employees:
+#     print(employee)
+def squares(lenght):
+    for i in range(lenght):
+        yield i * i
+for square in squares(10):
+    print(square)
+print('-'*40)
+# Example
+
+
+
+
+

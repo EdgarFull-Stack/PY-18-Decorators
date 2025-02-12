@@ -16,27 +16,41 @@ def keli_apdorojimai(tekstas, *args):
     return tekstas
 print(keli_apdorojimai('LABAS', prideti_zenkliuka, apversti_teksta))
 print('-'*40)
-#  Task 2
-
+# Task 2
 def sekimo_dekoratorius(funkcija):
     def wrapper (*args, **kwargs):
-        print(f'Vykdoma funkcija {funkcija}')
+        print(f'Vykdoma funkcija')
         res = funkcija(*args, **kwargs)
         print(f'Funkcija baigta')
         return res
     return wrapper
 
 @sekimo_dekoratorius
-def vykdyk_aritmetika(skaicius1, skaicius2, veiksmas = None):
-    if veiksmas == 'dauginti':
-        return skaicius1 * skaicius2
-    if veiksmas == 'dalinti':
-        if  skaicius2 == 0:
-            raise ValueError ('Can not be divided by zero')
-        return skaicius1 / skaicius2
+def dauginti(a, b):
+    return a * b
 
-print(vykdyk_aritmetika(3,4,'dauginti'))
-print(vykdyk_aritmetika(8,4,'dalinti'))
-print(vykdyk_aritmetika(1,2,'dalinti'))
+@sekimo_dekoratorius
+def dalinti(a, b):
+    if b == 0:
+        return 'dalyba is nulio negalima'
+    return a / b
 
+print(dauginti(2,1))
+print(dalinti(4,1))
+# Task 3
+class SkaiciuSekosIteratorius:
+    def __init__(self, pradinis, galinis):
+        self.skaiciai = list(range(pradinis, galinis+1,2))
 
+    def __iter__(self):
+        return iter(self.skaiciai)
+
+    def atgaline_seka(self):
+        return iter(self.skaiciai[::-1])
+
+iteratorius = SkaiciuSekosIteratorius(1, 10)
+for skaicius in iteratorius:
+    print(skaicius)
+
+for skaicius in iteratorius.atgaline_seka():
+    print(skaicius)
