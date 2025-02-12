@@ -138,7 +138,7 @@ def squares(lenght):
 for square in squares(10):
     print(square)
 print('-'*40)
-# Example
+
 
 
 

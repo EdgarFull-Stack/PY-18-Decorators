@@ -1,4 +1,7 @@
 # Task 1
+from calendar import firstweekday
+
+
 def prideti_zenkliuka(tekstas):
     return tekstas + '*'
 print(prideti_zenkliuka('Labas'))
@@ -37,6 +40,7 @@ def dalinti(a, b):
 
 print(dauginti(2,1))
 print(dalinti(4,1))
+print('-'*40)
 # Task 3
 class SkaiciuSekosIteratorius:
     def __init__(self, pradinis, galinis):
@@ -54,3 +58,28 @@ for skaicius in iteratorius:
 
 for skaicius in iteratorius.atgaline_seka():
     print(skaicius)
+print('-'*40)
+# Task 4
+def fib_generator(n):
+    a = 0
+    b = 1
+    for _ in range(n):
+        yield a
+        a, b = b, a + b
+
+for num in fib_generator(20):
+    print(num)
+
+def filtruoti_lyginius(seka):
+    for skaicius in seka:
+        if skaicius % 2 == 0:
+            yield skaicius
+
+lyginiu_fib = filtruoti_lyginius(fib_generator(20))
+print(list(lyginiu_fib))
+
+
+
+
+
+
